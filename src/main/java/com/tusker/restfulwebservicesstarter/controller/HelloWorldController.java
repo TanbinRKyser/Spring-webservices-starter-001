@@ -1,10 +1,7 @@
 package com.tusker.restfulwebservicesstarter.controller;
 
 import com.tusker.restfulwebservicesstarter.service.HelloWorldBean;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloWorldController {
@@ -18,4 +15,11 @@ public class HelloWorldController {
     public HelloWorldBean helloWorldBean(){
         return new HelloWorldBean("Hello World");
     }
+
+    @GetMapping("/hello-world/{name}")
+    public HelloWorldBean helloWorldBean( @PathVariable String name ){
+        return new HelloWorldBean( "Hello World " + name );
+    }
+
+
 }
