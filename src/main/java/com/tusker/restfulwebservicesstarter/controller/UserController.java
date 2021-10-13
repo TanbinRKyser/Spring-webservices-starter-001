@@ -2,9 +2,7 @@ package com.tusker.restfulwebservicesstarter.controller;
 
 import com.tusker.restfulwebservicesstarter.model.User;
 import com.tusker.restfulwebservicesstarter.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,4 +27,9 @@ public class UserController {
         return userService.findUserById( id );
     }
 
+
+    @PostMapping("/users")
+    void addNewUser( @RequestBody User user ){
+        userService.addNewUser( user );
+    }
 }
