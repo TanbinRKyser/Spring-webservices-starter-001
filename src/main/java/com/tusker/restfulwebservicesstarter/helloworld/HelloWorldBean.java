@@ -1,4 +1,4 @@
-package com.tusker.restfulwebservicesstarter.service;
+package com.tusker.restfulwebservicesstarter.helloworld;
 
 public class HelloWorldBean {
 

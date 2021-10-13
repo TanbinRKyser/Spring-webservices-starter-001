@@ -1,6 +1,5 @@
-package com.tusker.restfulwebservicesstarter.controller;
+package com.tusker.restfulwebservicesstarter.helloworld;
 
-import com.tusker.restfulwebservicesstarter.service.HelloWorldBean;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
