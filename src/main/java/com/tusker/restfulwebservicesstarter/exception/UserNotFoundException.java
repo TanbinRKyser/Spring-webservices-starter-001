@@ -1,4 +1,4 @@
-package com.tusker.restfulwebservicesstarter.service;
+package com.tusker.restfulwebservicesstarter.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

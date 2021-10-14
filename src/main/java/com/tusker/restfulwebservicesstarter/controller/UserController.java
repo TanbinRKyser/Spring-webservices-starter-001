@@ -1,7 +1,7 @@
 package com.tusker.restfulwebservicesstarter.controller;
 
 import com.tusker.restfulwebservicesstarter.model.User;
-import com.tusker.restfulwebservicesstarter.service.UserNotFoundException;
+import com.tusker.restfulwebservicesstarter.exception.UserNotFoundException;
 import com.tusker.restfulwebservicesstarter.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
