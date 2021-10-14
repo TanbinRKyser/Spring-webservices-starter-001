@@ -1,6 +1,7 @@
 package com.tusker.restfulwebservicesstarter.controller;
 
 import com.tusker.restfulwebservicesstarter.model.User;
+import com.tusker.restfulwebservicesstarter.service.UserNotFoundException;
 import com.tusker.restfulwebservicesstarter.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +27,12 @@ public class UserController {
 
     // retrieve user by id
     @GetMapping("/users/{id}")
-    User findUserById( @PathVariable long id ){
-        return userService.findUserById( id );
+    User findUserById( @PathVariable int id ){
+        User userById = userService.findUserById( id );
+        if( userById == null ){
+            throw new UserNotFoundException( " id - " + id );
+        }
+        return userById;
     }
 
 
