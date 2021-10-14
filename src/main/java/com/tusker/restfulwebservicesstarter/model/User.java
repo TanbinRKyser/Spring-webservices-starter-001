@@ -3,24 +3,24 @@ package com.tusker.restfulwebservicesstarter.model;
 import java.util.Date;
 
 public class User {
-    private long id;
+    private int id;
     private String name;
     private Date birthDate;
 
     public User() {
     }
 
-    public User( long id, String name, Date birthDate ) {
+    public User( int id, String name, Date birthDate ) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId( long id ) {
+    public void setId( int id ) {
         this.id = id;
     }
 

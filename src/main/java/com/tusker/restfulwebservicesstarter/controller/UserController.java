@@ -2,8 +2,11 @@ package com.tusker.restfulwebservicesstarter.controller;
 
 import com.tusker.restfulwebservicesstarter.model.User;
 import com.tusker.restfulwebservicesstarter.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -29,7 +32,16 @@ public class UserController {
 
 
     @PostMapping("/users")
-    void addNewUser( @RequestBody User user ){
-        userService.addNewUser( user );
+    ResponseEntity<Object> addNewUser( @RequestBody User user ){
+        User newUser = userService.addNewUser( user );
+        // return a status
+        // /user/{id} -> newUser.getId();
+        URI uri = ServletUriComponentsBuilder
+                    .fromCurrentRequest()
+                    .path( "/{id}" )
+                    .buildAndExpand( newUser.getId() )
+                    .toUri();
+
+        return ResponseEntity.created( uri ).build();
     }
 }
