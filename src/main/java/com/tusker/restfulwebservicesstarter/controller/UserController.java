@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class UserController {
 
 
     @PostMapping("/users")
-    ResponseEntity<Object> addNewUser( @RequestBody User user ){
+    ResponseEntity<Object> addNewUser( @Valid @RequestBody User user ){
         User newUser = userService.addNewUser( user );
         // return a status
         // /user/{id} -> newUser.getId();
