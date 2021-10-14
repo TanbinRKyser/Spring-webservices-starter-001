@@ -49,4 +49,20 @@ public class UserController {
 
         return ResponseEntity.created( uri ).build();
     }
+
+    @DeleteMapping("/users/{id}")
+    ResponseEntity<Object> removeUser( @PathVariable int id ){
+
+        User removeUser = userService.removeUser( id );
+
+        if( removeUser == null ) throw new UserNotFoundException( "id - " + id );
+
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path( "/{id}" )
+                .buildAndExpand( removeUser.getId() )
+                .toUri();
+
+        return ResponseEntity.created( uri ).build();
+    }
 }
