@@ -1,8 +1,10 @@
 package com.tusker.restfulwebservicesstarter.controller;
 
-import com.tusker.restfulwebservicesstarter.model.User;
 import com.tusker.restfulwebservicesstarter.exception.UserNotFoundException;
+import com.tusker.restfulwebservicesstarter.model.User;
 import com.tusker.restfulwebservicesstarter.service.UserService;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -28,12 +30,19 @@ public class UserController {
 
     // retrieve user by id
     @GetMapping("/users/{id}")
-    User findUserById( @PathVariable int id ){
+    EntityModel<User> findUserById( @PathVariable int id ){
         User userById = userService.findUserById( id );
-        if( userById == null ){
-            throw new UserNotFoundException( " id - " + id );
-        }
-        return userById;
+
+        if( userById == null )  throw new UserNotFoundException( " id - " + id );
+
+        EntityModel<User> resource = EntityModel.of( userById );
+
+        WebMvcLinkBuilder linkTo = WebMvcLinkBuilder.linkTo( WebMvcLinkBuilder
+                                                                .methodOn( this.getClass() )
+                                                                .findAllUsers() );
+        resource.add( linkTo.withRel( "all-users" ) );
+
+        return resource;
     }
 
 
